@@ -38,4 +38,11 @@ class Event
       result
     end
   end
+
+  def overstocked_items
+    available_items.reduce([]) do |result, item|
+      result << item if item_total_stock(item) > 50 && food_trucks_that_sell(item).size > 1
+      result
+    end
+  end
 end
