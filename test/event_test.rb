@@ -226,8 +226,9 @@ class EventTest < Minitest::Test
   end
 
   def test_it_knows_the_date
+    date = Date.parse('2020-02-24')
+    Date.stubs(:today).returns(date)
     event = Event.new("South Pearl Street Farmers Market")
-    event.stubs(:date).returns("24/02/2020")
 
     assert_equal "24/02/2020", event.date
   end
