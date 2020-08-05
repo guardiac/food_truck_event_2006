@@ -31,4 +31,11 @@ class Event
   def item_total_stock(item)
     food_trucks_that_sell(item).sum { |food_truck| food_truck.inventory[item] }
   end
+
+  def total_inventory
+    available_items.reduce({}) do |result, item|
+      result[item] = {quantity: item_total_stock(item), food_trucks: food_trucks_that_sell(item)}
+      result
+    end
+  end
 end
