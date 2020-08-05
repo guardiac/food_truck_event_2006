@@ -20,4 +20,11 @@ class Event
       food_truck.inventory.keys.include?(item)
     end
   end
+
+  def available_items
+    @food_trucks.reduce([]) do |result, food_truck|
+      result << food_truck.inventory.keys
+      result
+    end.flatten.uniq
+  end
 end

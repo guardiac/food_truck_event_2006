@@ -233,7 +233,7 @@ pry(main)> event.total_inventory
   #   },
   # }
 
-pry(main).overstocked_items
+pry(main)> event.overstocked_items
 #=> [#<Item:0x007f9c56740d48...>]
 
 pry(main)> event.sorted_item_list
