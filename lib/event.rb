@@ -27,4 +27,8 @@ class Event
       result
     end.flatten.uniq
   end
+
+  def item_total_stock(item)
+    food_trucks_that_sell(item).sum { |food_truck| food_truck.inventory[item] }
+  end
 end
