@@ -53,4 +53,23 @@ class Event
   def sorted_item_list
     available_items.map { |item| item.name }.sort
   end
+
+  def sell(item, quantity)
+    if item_total_stock(item) < quantity
+      false
+    else
+      reduce_stock(item,quantity)
+      true
+    end
+  end
+
+  def reduce_stock(item, quantity)
+    food_trucks_that_sell(item).each do |food_truck|
+      food_truck.inventory[item] -= quantity
+      if food_truck.inventory[item] < 0
+        quantity = food_truck.inventory[item] * -1
+        food_truck.inventory[item] = 0
+      end
+    end
+  end
 end
